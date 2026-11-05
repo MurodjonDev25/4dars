@@ -1,6 +1,23 @@
 [
   {
-    "name": "alii",
-    "id": 1
+    "id": 1,
+    "name": "sut",
+    "narx": 12000,
+    "soni": 2,
+    "jamiNarx": 24000
+  },
+  {
+    "id": 2,
+    "name": "non",
+    "narx": 4000,
+    "soni": 3,
+    "jamiNarx": 12000
+  },
+  {
+    "id": 3,
+    "name": "qahva",
+    "narx": 45000,
+    "soni": 1,
+    "jamiNarx": 45000
   }
 ]

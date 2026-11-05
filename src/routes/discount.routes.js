@@ -1,15 +1,19 @@
-import {Router} from "express"; 
+import { Router } from "express";
 import discountController from "../controller/discount.controller.js";
-import validate from "../middleware/validate.middleware.js"
-import {createDiscountSchema, updateDiscountSchema} from "../validation/discount.validate.js";
+import { validate } from "../middleware/validate.middleware.js";
+import { createDiscountSchema, updateDiscountSchema } from "../validation/discount.validation.js";
 
-const router_discount = new Router();
-
-router_discount.get("/", discountController.getAll);
-router_discount.get("/:id", discountController.getId);
-router_discount.post("/", validate(createDiscountSchema), discountController.create);
-router_discount.put("/:id", validate(updateDiscountSchema), discountController.update);
-router_discount.delete("/:id", discountController.deleteItem);
+const router_discount = new Router();  
 
 
-export default router_discount;
+router_discount
+    .get('/',discountController.getAll)
+    .get('/:id',discountController.getId)
+    .post('/',validate(createDiscountSchema),discountController.create)
+    .put('/:id',validate(updateDiscountSchema),discountController.update)
+    .delete('/:id',discountController.deleteItem)
+
+
+
+
+export {router_discount}

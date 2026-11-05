@@ -1,10 +1,14 @@
 [
   {
-    "id": 1
+    "id": 1,
+    "name": "simsiz moslama"
   },
   {
-    "name": "alii",
-    "email": "dswd@gmail.com",
-    "id": 2
+    "id": 2,
+    "name": "aqlli soat"
+  },
+  {
+    "id": 3,
+    "name": "portativ kalonka"
   }
 ]

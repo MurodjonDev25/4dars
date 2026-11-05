@@ -1,10 +1,23 @@
 [
   {
-    "id": 1
+    "id": 1,
+    "name": "smartfon",
+    "narx": 3500000,
+    "kategoriya": "elektronika",
+    "yangi": true
   },
   {
-    "name": "alii",
-    "email": "dswd@gmail.com",
-    "id": 2
+    "id": 2,
+    "name": "simsiz quloqchin",
+    "narx": 450000,
+    "kategoriya": "elektronika",
+    "yangi": true
+  },
+  {
+    "id": 3,
+    "name": "aqlli soat",
+    "narx": 800000,
+    "kategoriya": "elektronika",
+    "yangi": true
   }
 ]

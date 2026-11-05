@@ -1,14 +1,20 @@
 import { Router } from "express"
-import controller from "../controller/users.controller.js"
-import validate from "../middleware/validate.middleware.js"
-import { createUserScheme, updateUserScheme } from "../validation/user.validate.js"
+import usersController from "../controller/users.controller.js"
+import { validate } from "../middleware/validate.middleware.js";
+import {
+    createUserSchema,
+    updateUserSchema,
+}from '../validation/users.validation.js'
+const router = new Router()
 
-const router = Router()
+router
+    .get('/',usersController.getAll)
+    .get('/:id',usersController.getId)
+    .post('/',validate(createUserSchema),usersController.create)
+    .put('/:id',validate(updateUserSchema),usersController.update)
+    .delete('/:id',usersController.deleteItem)
 
-router.get("/", controller.getAll)
-router.get("/:id", controller.getId)
-router.post("/", validate(createUserScheme), controller.create)
-router.put("/:id", validate(updateUserScheme), controller.update)
-router.delete("/:id", controller.deleteItem)
 
-export default router
+
+
+export {router}

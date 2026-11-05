@@ -1,13 +1,44 @@
 [
   {
-    "id": 1
+    "id": 1,
+    "name": "bahorgi chegirma"
   },
   {
-    "name": "alii",
-    "narx": 3000000,
+    "id": 2,
+    "name": "yozgi chegirma"
+  },
+  {
+    "id": 3,
+    "name": "kuzgi chegirma"
+  },
+  {
+    "name": "jasur",
+    "id": 4
+  },
+  {
+    "name": "sardor",
+    "foyiz": "20",
+    "id": 5
+  },
+  {
+    "name": "malika",
+    "foyiz": 20,
+    "id": 6
+  },
+  {
+    "name": "telefon",
+    "narx": 30000,
     "foyiz": 10,
-    "chegirmaSummasi": 300000,
-    "yakuniyNarx": 2700000,
-    "id": 2
+    "chegirmaSummasi": 3000,
+    "yakuniyNarx": 27000,
+    "id": 7
+  },
+  {
+    "name": "noutbuk",
+    "narx": 30000,
+    "foyiz": 1,
+    "chegirmaSummasi": 300,
+    "yakuniyNarx": 29700,
+    "id": 8
   }
 ]

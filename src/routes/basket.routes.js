@@ -1,14 +1,17 @@
 import { Router } from "express"
-import Basketcontroller from "../controller/basket.controller.js"
-import validate from "../middleware/validate.middleware.js"
-import {createbasketschema, updatebasketschema} from "../validation/basket.validate.js";
+import basketController from "../controller/basket.controller.js"
+import { validate } from "../middleware/validate.middleware.js"
+import { createbasketschema,updatebasketschema } from "../validation/basket.validation.js" 
+const router_basket = new Router()
 
-const router = Router()
+router_basket
+    .get('/',basketController.getAll)
+    .get('/:id',basketController.getId)
+    .post('/',validate(createbasketschema),basketController.create)
+    .put('/:id',validate(updatebasketschema),basketController.update)
+    .delete('/:id',basketController.deleteItem)
 
-router.get("/", Basketcontroller.getAll)
-router.get("/:id", Basketcontroller.getId)
-router.post("/", validate(createbasketschema), Basketcontroller.create)
-router.put("/:id", validate(updatebasketschema), Basketcontroller.update)
-router.delete("/:id", Basketcontroller.deleteItem)
 
-export default router
+
+
+export {router_basket}

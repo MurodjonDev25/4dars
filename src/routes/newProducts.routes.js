@@ -1,14 +1,19 @@
-import express from "express";
+import { Router } from "express";
 import newProductsController from "../controller/newProducts.controller.js";
-import validate from "../middleware/validate.middleware.js"
-import {createnewProductsScheme, updatenewProductsScheme} from "../validation/newProducts.validate.js";
+import { validate } from "../middleware/validate.middleware.js";
+import { createNewProductsSchema, updateNewProductsSchema } from "../validation/newProducts.validation.js";
 
-const router = express.Router();
+const router_newProducts = new Router();  
 
-router.get("/", (req, res) => newProductsController.getAll(req, res));
-router.get("/:id", (req, res) => newProductsController.getId(req, res));
-router.post("/", validate(createnewProductsScheme), (req, res) => newProductsController.create(req, res));
-router.put("/:id", validate(updatenewProductsScheme), (req, res) => newProductsController.update(req, res));
-router.delete("/:id", (req, res) => newProductsController.deleteItem(req, res));
 
-export default router;
+router_newProducts
+    .get('/',newProductsController.getAll)
+    .get('/:id',newProductsController.getId)
+    .post('/',validate(createNewProductsSchema),newProductsController.create)
+    .put('/:id',validate(updateNewProductsSchema),newProductsController.update)
+    .delete('/:id',newProductsController.deleteItem)
+
+
+
+
+export {router_newProducts}
