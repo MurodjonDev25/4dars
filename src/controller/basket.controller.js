@@ -1,113 +1,103 @@
-import { getData,setData } from "../helpers/fileData.js"
-
-
-class BasketController{
-    async getAll(req,res){
-        try{
-            const items = await getData('basket.json')
-            if(!items.length){
-                return res.status(404).json({
-                    success:false,
-                    message:"malumotlar topilmadi"
+import { getData, setData } from "../helpers/fileData.js";
+class BasketsController {
+    async getAllBaskets(req, res) {
+        try {
+            const users = await getData('baskets.json')
+            if (!users) {
+                res.status(404).json({
+                    succes: false,
+                    message: 'Malumot yuq!'
                 })
             }
-            return res.status(200).json({
-                success:true,
-                data:items
+            res.status(200).json({
+                succes: true,
+                message: `Malumot topildi!`,
+                data: users
             })
-        }catch(err){
-            console.log(`get da xatolik bor: ${err.message}`)
-            return res.status(500).json({success:false,message:"Serverda xatolik"})
+        } catch (err) {
+            console.log(`Error is on getData function error ${err.message}`);
+
         }
     }
-    async getId(req,res){
-        try{
-            const items = await getData('basket.json')
-            const id = +req.params.id
-            const item = items.find((el) => el.id === id)
+    async getId(req, res) {
+        const id = +req.params.id
+        const users = await getData('baskets.json')
+        const index = users.find(el => el.id === id)
 
-            if(!item){
-                return res.status(404).json({
-                    success:false,
-                    message:'mahsulot topilmadi'
-                })
-            }
-
-            return res.status(200).json({
-                success:true,
-                message:"topildi",
-                data:item
+        if (!index) {
+            res.status(404).json({
+                succes: false,
+                message: 'Malumot topilmadi'
             })
-        }catch(err){
-            console.log(`getId da xatolik bor: ${err.message}`)
-            return res.status(500).json({success:false,message:"Serverda xatolik"})
         }
+        return res.status(200).json({
+            succes: true,
+            message: 'Malumot topildi',
+            data: index
+
+        })
     }
-    async create(req,res){
-        try{
-            const items = await getData('basket.json')
-            const newItem = {
-                ...req.body,
-                id:items.length ? items.at(-1).id+1: 1
-            }
-            items.push(newItem)
-            await setData('basket.json',items)
-            return res.status(201).json({
-                success:true,
-                message:"muvaffaqiyatli qo'shildi",
-                data:newItem
-            })
-        }catch(err){
-            console.log(`Create da xatolik bor : ${err.message}`)
-            return res.status(500).json({success:false,message:"Serverda xatolik"})
-        }
-    }
-    async update(req,res){
-        try{
-            const id = +req.params.id
-            const items = await getData('basket.json')
-            const index = items.findIndex(el=>el.id===id)
+    async creatBaskets(req, res) {
+        const users = await getData('baskets.json')
 
-            if(index===-1){
-                return res.status(404).json({success:false,message:"mahsulot topilmadi"})
-            }
-            items[index]={
-                ...req.body,
-                id:id
-            }
-            await setData('basket.json',items)
-            return res.status(200).json({
-                success:true,
-                message:"o'zgartirildi",
-                data:items[index]
-            })
-        }catch(err){
-            console.log(`updateda xatolik bor: ${err.message}`)
-            return res.status(500).json({success:false,message:"Serverda xatolik"})
+        const newUser = {
+            id: users.length ? users.at(-1).id + 1 : 1,
+            ...req.body
         }
+        users.push(newUser)
+        await setData('baskets.json', users)
+        return res.status(200).json({
+            succes: true,
+            message: `Yangi malumot qushildi`,
+            data: newUser
+        })
     }
-    async deleteItem(req,res){
-        try{
-            const id = +req.params.id
-            const items = await getData('basket.json')
-            const index = items.findIndex(el=>el.id===id)
+    async updateBaskets(req, res) {
+        const id = +req.params.id
+        const users = await getData('baskets.json')
+        const index = users.findIndex(el => el.id === id)
 
-            if(index===-1){
-                return res.status(404).json({success:false,message:"mahsulot topilmadi"})
+        if (index != -1) {
+            users[index] = {
+                id: id,
+                ...req.body
             }
-            items.splice(index,1)
-            await setData('basket.json',items)
-            return res.status(200).json({
-                success:true,
-                message:"o'chirildi"
-            })
-        }catch(err){
-            console.log(`deleteda xatolik bor: ${err.message}`)
-            return res.status(500).json({success:false,message:"Serverda xatolik"})
+            await setData('baskets.json', users)
+            return res.status(200).json({})
         }
+        res.status(404).json({
+            succes: false,
+            message: `Bunday ${id}li user yuq`
+        })
+    }
+    async deleteBaskets(req, res) {
+        const id = +req.params.id
+        const users = await getData('baskets.json')
+        const index = users.findIndex(el => el.id === id)
+
+        users.splice(index, 1)
+        await setData('baskets.json', users)
+        res.status(200).json({
+            succes: true,
+            message: 'Muvaffaqiyatli uchirildi'
+        })
     }
 
+    async getAll(req, res) {
+        return this.getAllBaskets(req, res);
+    }
+
+    async create(req, res) {
+        return this.creatBaskets(req, res);
+    }
+
+    async update(req, res) {
+        return this.updateBaskets(req, res);
+    }
+
+    async deleteItem(req, res) {
+        return this.deleteBaskets(req, res);
+    }
 }
 
-
-export default new BasketController()
+export default new BasketsController()

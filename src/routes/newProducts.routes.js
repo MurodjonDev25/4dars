@@ -1,5 +1,5 @@
 import { Router } from "express";
-import newProductsController from "../controller/newProducts.controller.js";
+import newProductsController from "../controller/newProduct.controller.js";
 import { validate } from "../middleware/validate.middleware.js";
 import { createNewProductsSchema, updateNewProductsSchema } from "../validation/newProducts.validation.js";
 

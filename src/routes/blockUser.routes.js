@@ -1,5 +1,5 @@
 import { Router } from "express";
-import blockUserController from "../controller/blockUser.controller.js";
+import blockUserController from "../controller/blocked.User.controller.js";
 import { validate } from "../middleware/validate.middleware.js";
 import { createBlockUserSchema, updateBlockUserSchema } from "../validation/blockUser.validation.js";
 
