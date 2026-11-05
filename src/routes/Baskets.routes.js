@@ -1,5 +1,5 @@
 import { Router } from "express"
-import basketController from "../controller/basket.controller.js"
+import basketController from "../controller/basket.scontroller.js"
 import { validate } from "../middleware/validate.middleware.js"
 import { createbasketschema,updatebasketschema } from "../validation/basket.validation.js" 
 const router_basket = new Router()
